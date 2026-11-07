@@ -419,7 +419,7 @@ mod tests {
                 if i % 4 == 0 { "video" } else { "image" },
             ));
         }
-        top.sort_by(|a, b| b.size.cmp(&a.size));
+        top.sort_by_key(|item| std::cmp::Reverse(item.size));
 
         let mut nested = HashMap::new();
         for item in &top {
@@ -447,13 +447,13 @@ mod tests {
         layout_treemap(&top, &nested, "C:\\root", 0, 1000.0, 600.0)
     }
 
+    /// A rect with the fields the hit-testing assertions care about. The geometry
+    /// arrives as `(x, y, width, height)`, so the call sites stay readable
+    /// without nine positional arguments.
     fn plain(
         id: u32,
         depth: u32,
-        x: f32,
-        y: f32,
-        w: f32,
-        h: f32,
+        (x, y, w, h): (f32, f32, f32, f32),
         caption_height: f32,
         subdivided: bool,
         parent_id: u32,
@@ -610,7 +610,7 @@ mod tests {
     fn hit_testing_ignores_paint_order() {
         let rects = laid_out();
         let mut reversed = rects.clone();
-        reversed.sort_by(|a, b| b.depth.cmp(&a.depth));
+        reversed.sort_by_key(|rect| std::cmp::Reverse(rect.depth));
         for parent in rects.iter().filter(|rect| rect.subdivided) {
             let kids: Vec<&LaidOutRect> = rects
                 .iter()
@@ -631,9 +631,9 @@ mod tests {
     #[test]
     fn seams_snap_to_the_nearer_sibling() {
         let pair = vec![
-            plain(10, 0, 0.0, 0.0, 100.0, 100.0, 15.0, true, 0),
-            plain(11, 1, 1.0, 17.0, 47.0, 82.0, 15.0, false, 10),
-            plain(12, 1, 50.0, 17.0, 49.0, 82.0, 15.0, false, 10),
+            plain(10, 0, (0.0, 0.0, 100.0, 100.0), 15.0, true, 0),
+            plain(11, 1, (1.0, 17.0, 47.0, 82.0), 15.0, false, 10),
+            plain(12, 1, (50.0, 17.0, 49.0, 82.0), 15.0, false, 10),
         ];
         let at = |x: f32, y: f32| pick_cell_at(&pair, x, y).map(|index| pair[index].id);
 

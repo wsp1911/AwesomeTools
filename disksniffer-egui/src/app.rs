@@ -468,7 +468,7 @@ impl DiskSnifferApp {
                         .map(|(index, kind)| (index, kind.size))
                         .filter(|(_, size)| *size > 0)
                         .collect();
-                    kinds.sort_by(|a, b| b.1.cmp(&a.1));
+                    kinds.sort_by_key(|(_, size)| std::cmp::Reverse(*size));
                     for (index, size) in kinds {
                         let kind = &summary.kinds[index];
                         let meta = theme::meta(&kind.key);
