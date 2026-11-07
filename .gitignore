@@ -5,6 +5,9 @@ dist/
 # Rust / Tauri build output
 target/
 
+# Library crates only keep a lock file for standalone test runs
+shared/*/Cargo.lock
+
 # Logs and temp
 *.log
 

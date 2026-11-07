@@ -1,16 +1,15 @@
 mod fsops;
-mod scan;
-mod tree;
 
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
+use disksniffer_core::scan::{self, ScanProgress};
+use disksniffer_core::tree::{
+    BatchEntry, Candidate, ChildrenPage, NodeDetail, PathEntry, ScanTree, Summary,
+};
 use serde::Serialize;
 use tauri::{AppHandle, Emitter, State};
-
-use scan::ScanProgress;
-use tree::{BatchEntry, Candidate, ChildrenPage, NodeDetail, PathEntry, ScanTree, Summary};
 
 pub struct Session {
     pub tree: Option<Arc<ScanTree>>,

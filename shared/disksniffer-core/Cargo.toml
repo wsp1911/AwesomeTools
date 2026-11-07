@@ -1,0 +1,21 @@
+[package]
+name = "disksniffer-core"
+version = "0.1.0"
+description = "Scan, index and query a disk usage tree (shared core of the DiskSniffer tools)"
+edition = "2021"
+rust-version = "1.77"
+license = "MIT"
+repository = "https://github.com/wsp1911/AwesomeTools"
+
+[dependencies]
+memmap2 = "0.9"
+rayon = "1"
+serde = { version = "1", features = ["derive"] }
+trash = "5"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_Storage_FileSystem",
+] }

@@ -614,13 +614,22 @@ dependencies = [
 name = "disksniffer"
 version = "0.1.0"
 dependencies = [
- "memmap2",
- "rayon",
+ "disksniffer-core",
  "serde",
  "serde_json",
  "tauri",
  "tauri-build",
  "tauri-plugin-dialog",
+ "windows-sys 0.61.2",
+]
+
+[[package]]
+name = "disksniffer-core"
+version = "0.1.0"
+dependencies = [
+ "memmap2",
+ "rayon",
+ "serde",
  "trash",
  "windows-sys 0.61.2",
 ]

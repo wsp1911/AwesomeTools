@@ -12,7 +12,8 @@
     "tauri": "tauri",
     "icon": "node scripts/gen-icon.mjs",
     "check:treemap": "node --experimental-strip-types --no-warnings scripts/check-treemap.ts",
-    "check:rust": "cargo test --manifest-path src-tauri/Cargo.toml --lib"
+    "check:core": "cargo test --manifest-path ../shared/disksniffer-core/Cargo.toml",
+    "check:rust": "npm run check:core && cargo test --manifest-path src-tauri/Cargo.toml --lib"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.12.0",
