@@ -1,0 +1,27 @@
+[package]
+name = "clipboard"
+version = "0.1.0"
+description = "Clipboard history manager with pinned entries, built on GPUI"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT"
+repository = "https://github.com/wsp1911/AwesomeTools"
+
+[dependencies]
+gpui = { version = "0.2", features = ["windows-manifest"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+global-hotkey = "0.9"
+tray-icon = "0.26"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_System_DataExchange"] }
+
+[build-dependencies]
+embed-resource = "3"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

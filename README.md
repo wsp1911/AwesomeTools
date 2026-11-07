@@ -8,6 +8,7 @@
 | --- | --- | --- | --- |
 | [DiskSniffer](./disksniffer) | 磁盘空间扫描与树图可视化，SpaceSniffer 的替代品 | Tauri 2（Rust）+ React 19 + TypeScript | 0.1.0 |
 | [DiskSniffer (egui)](./disksniffer-egui) | 同一套扫描内核的纯 Rust 版本，无 webview | Rust + egui 0.37 | 0.1.0 |
+| [Clipboard](./clipboard) | 剪贴板历史：托盘常驻、全局热键、置顶与超限淘汰 | Rust + GPUI 0.2 | 0.1.0 |
 
 ## 目录约定
 
@@ -22,6 +23,8 @@ AwesomeTools/
     package.json
     src-tauri/
   disksniffer-egui/
+    README.md
+  clipboard/
     README.md
   <下一个工具>/
 ```
