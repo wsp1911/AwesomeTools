@@ -3,6 +3,7 @@ name = "disksniffer"
 version = "0.1.0"
 description = "Fast disk space analyzer with treemap visualization"
 authors = ["DiskSniffer"]
+license = "MIT"
 edition = "2021"
 rust-version = "1.77"
 

@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Fast disk space analyzer with treemap visualization",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

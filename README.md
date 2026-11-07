@@ -56,4 +56,6 @@ git push origin disksniffer/v0.1.0
 
 ## 许可
 
-待定。发布前需要为仓库（或每个工具单独）选定 LICENSE。
+[MIT](./LICENSE) © 2026 wsp1911
+
+每个工具都在自己的清单文件里标注了 `license = "MIT"`（Rust，Cargo.toml）或 `"license": "MIT"`（Node，package.json），与根目录 LICENSE 保持一致。
