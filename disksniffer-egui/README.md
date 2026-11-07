@@ -32,7 +32,9 @@ DiskSniffer 的纯 Rust 版本：同样的磁盘扫描与树图可视化，界�
       fsops.rs    # 用系统 shell 打开/定位（第三方默认文件管理器可以接管）
       theme.rs    # 按文件类型配色
       format.rs   # 字节/计数/百分比/耗时格式化
-      main.rs     # run_native 入口
+      main.rs     # run_native 入口，设置窗口图标
+    assets/       # 图标美术资源：icon.png（窗口图标源）、icon.ico（exe 图标资源）
+    build.rs      # 解码 icon.png 供 IconData，并把 icon.ico 编成 exe 的 ID 1 图标资源
 
 因为 egui 是立即模式，每帧都重画。布局结果按「聚焦节点 + 像素尺寸」缓存，只有下钻或窗口尺寸变化时才重新计算；一帧内最多画 220 个块（一级层面超出部分聚合成「其他 N 项」）。
 
@@ -41,6 +43,13 @@ DiskSniffer 的纯 Rust 版本：同样的磁盘扫描与树图可视化，界�
     cargo build --release
 
 产物：`target/release/disksniffer-egui.exe`（release profile 已开 LTO、`opt-level = "s"`、strip）。
+
+图标分两处生效，都来自 `assets/` 里与 Tauri 版同款的美术资源：
+
+- `build.rs` 把 `icon.png` 解码成裸 RGBA 写进 `OUT_DIR`，`main.rs` 用 `include_bytes!` 取出来交给 `ViewportBuilder::with_icon` —— 决定标题栏、任务栏与 Alt+Tab 的图标（不设的话 eframe 会给它自己的 `e` 图标）。
+- `build.rs` 另外把 `icon.ico` 编成 exe 里 ID 1 的图标资源 —— 文件管理器里的 exe 图标来自这里，缺了就是系统默认程序图标。
+
+解码只在构建期做（`png` 是 build-dependency），发布的 exe 不因此多出任何运行时依赖。
 
 ## 校验
 

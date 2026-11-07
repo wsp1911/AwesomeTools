@@ -23,6 +23,12 @@ windows-sys = { version = "0.61", features = [
     "Win32_UI_WindowsAndMessaging",
 ] }
 
+[build-dependencies]
+# Decodes assets/icon.png into the window icon; build-time only, so the shipped
+# binary stays dependency free.
+png = "0.18"
+embed-resource = "3"
+
 [profile.release]
 codegen-units = 1
 lto = true
