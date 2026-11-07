@@ -7,6 +7,7 @@
 | 工具 | 说明 | 技术栈 | 版本 |
 | --- | --- | --- | --- |
 | [DiskSniffer](./disksniffer) | 磁盘空间扫描与树图可视化，SpaceSniffer 的替代品 | Tauri 2（Rust）+ React 19 + TypeScript | 0.1.0 |
+| [DiskSniffer (egui)](./disksniffer-egui) | 同一套扫描内核的纯 Rust 版本，无 webview | Rust + egui 0.37 | 0.1.0 |
 
 ## 目录约定
 
@@ -14,19 +15,23 @@
 AwesomeTools/
   README.md          # 本文件：工具索引
   .gitignore
-  disksniffer/       # 每个工具一个顶层目录，自包含
+  shared/            # 被多个工具共用的 crate
+    disksniffer-core/   # 扫描器 + 节点池（两个 DiskSniffer 都用它）
+  disksniffer/       # 每个工具一个顶层目录
     README.md        # 该工具自己的说明：功能、构建、校验
     package.json
     src-tauri/
+  disksniffer-egui/
+    README.md
   <下一个工具>/
 ```
 
 新增工具时：
 
-1. 在仓库根目录建同名目录，保持**自包含**：单独把这个目录拷出去也能构建运行。
+1. 在仓库根目录建同名目录，尽量**自包含**：单独把这个目录拷出去也能构建运行。
 2. 目录内放自己的 README，写清功能、构建方式、校验命令。
 3. 把新工具登记到上面的表格里。
-4. 不要跨工具共享代码，除非确有需要（真需要时放 `shared/` 并在 README 说明）。
+4. 不要跨工具共享代码，除非确有需要（真需要时放 `shared/` 并在 README 说明）。目前只有 `shared/disksniffer-core` 一处共享：它是 DiskSniffer 的扫描内核，被 Tauri 版和 egui 版同时 path 依赖。因此这两个工具不能只拷自己的目录。
 
 ## 版本管理
 
@@ -39,12 +44,12 @@ AwesomeTools/
 - 发布用带工具名前缀的 tag，格式 `<tool>/v<major>.<minor>.<patch>`：
 
 ```bash
-git tag disksniffer/v0.1.0
+git tag disksniffer-egui/v0.1.0
 git push origin main
-git push origin disksniffer/v0.1.0
+git push origin disksniffer-egui/v0.1.0
 ```
 
-- GitHub Release 基于该 tag 建立，标题写工具名 + 版本（例如 `DiskSniffer v0.1.0`），安装包等产物挂在该 Release 下。
+- GitHub Release 基于该 tag 建立，标题写工具名 + 版本（例如 `DiskSniffer egui v0.1.0`），安装包等产物挂在该 Release 下。
 - 只改一个工具时，不要顺手动别的工具的版本号。
 
 ### 发版检查清单
@@ -57,5 +62,3 @@ git push origin disksniffer/v0.1.0
 ## 许可
 
 [MIT](./LICENSE) © 2026 wsp1911
-
-每个工具都在自己的清单文件里标注了 `license = "MIT"`（Rust，Cargo.toml）或 `"license": "MIT"`（Node，package.json），与根目录 LICENSE 保持一致。
