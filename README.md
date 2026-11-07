@@ -9,6 +9,7 @@
 | [DiskSniffer](./disksniffer) | 磁盘空间扫描与树图可视化，SpaceSniffer 的替代品 | Tauri 2（Rust）+ React 19 + TypeScript | 0.1.0 |
 | [DiskSniffer (egui)](./disksniffer-egui) | 同一套扫描内核的纯 Rust 版本，无 webview | Rust + egui 0.37 | 0.1.0 |
 | [Clipboard](./clipboard) | 剪贴板历史：托盘常驻、全局热键、置顶与超限淘汰 | Rust + GPUI 0.2 | 0.1.0 |
+| [VideoSeek](./videoskip) | Chrome 扩展：Shift + 方向键按步长跳转、输入时间点跳转 | Chrome Extension MV3 + JavaScript | 0.1.0 |
 
 ## 目录约定
 
@@ -25,6 +26,8 @@ AwesomeTools/
   disksniffer-egui/
     README.md
   clipboard/
+    README.md
+  videoskip/         # 浏览器扩展，无需构建
     README.md
   <下一个工具>/
 ```
@@ -43,6 +46,7 @@ AwesomeTools/
 - 版本号写在工具自己的清单文件里，遵循语义化版本：
   - Node 侧：`package.json` 的 `version`
   - Rust 侧：`Cargo.toml` 的 `package.version`
+  - 浏览器扩展：`manifest.json` 的 `version`
   - Tauri 还需同步 `tauri.conf.json` 的 `version`（三处必须一致）
 - 发布用带工具名前缀的 tag，格式 `<tool>/v<major>.<minor>.<patch>`：
 

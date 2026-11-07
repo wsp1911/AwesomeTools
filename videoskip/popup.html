@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>VideoSeek</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        width: 264px;
+        margin: 0;
+        padding: 14px 16px 12px;
+        background: #14161a;
+        color: #e6e8eb;
+        font: 13px/1.5 system-ui, 'Segoe UI', 'Microsoft YaHei UI', sans-serif;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin: 10px 0;
+        color: #c8cfda;
+      }
+      input[type='number'] {
+        width: 88px;
+        padding: 5px 8px;
+        border-radius: 6px;
+        border: 1px solid #2b303a;
+        background: #1b1e24;
+        color: #e6e8eb;
+        font: inherit;
+        text-align: right;
+      }
+      input[type='number']:focus {
+        outline: none;
+        border-color: #58a6ff;
+      }
+      input[type='checkbox'] {
+        width: 15px;
+        height: 15px;
+        accent-color: #58a6ff;
+      }
+      kbd {
+        padding: 1px 5px;
+        border-radius: 4px;
+        border: 1px solid #2b303a;
+        background: #1b1e24;
+        font: 11px ui-monospace, Consolas, monospace;
+        color: #c8cfda;
+      }
+      .hint {
+        margin: 12px 0 0;
+        font-size: 11px;
+        line-height: 1.7;
+        color: #8b93a1;
+      }
+      button {
+        width: 100%;
+        margin-top: 12px;
+        padding: 7px 10px;
+        border-radius: 7px;
+        border: 1px solid #2b303a;
+        background: #1b1e24;
+        color: #e6e8eb;
+        font: inherit;
+        cursor: pointer;
+      }
+      button:hover {
+        border-color: #58a6ff;
+      }
+      .status {
+        min-height: 1.2em;
+        margin: 8px 0 0;
+        font-size: 11px;
+        color: #8b93a1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>VideoSeek</h1>
+    <label>步长（秒）<input id="step" type="number" min="1" max="600" step="1" /></label>
+    <label>启用 <input id="enabled" type="checkbox" /></label>
+    <p class="hint">
+      <kbd>Shift</kbd> + <kbd>←</kbd> / <kbd>→</kbd> 按步长跳<br />
+      <kbd>Shift</kbd> + <kbd>G</kbd> 打开时间输入框
+    </p>
+    <button id="jump" type="button">在当前标签页打开时间框</button>
+    <p class="status" id="status"></p>
+    <script src="popup.js"></script>
+  </body>
+</html>
