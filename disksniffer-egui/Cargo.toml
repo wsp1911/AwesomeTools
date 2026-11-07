@@ -1,0 +1,21 @@
+[package]
+name = "disksniffer-egui"
+version = "0.1.0"
+description = "Disk space analyzer with a treemap view, drawn natively with egui"
+edition = "2021"
+rust-version = "1.77"
+license = "MIT"
+repository = "https://github.com/wsp1911/AwesomeTools"
+
+[dependencies]
+eframe = "0.37"
+# Native folder picker; keeps the app free of any webview.
+rfd = "0.17"
+disksniffer-core = { path = "../shared/disksniffer-core" }
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true
