@@ -8,16 +8,56 @@ pub struct KindMeta {
 
 /// Order matches disksniffer_core::scan::KIND_KEYS.
 pub const KINDS: [KindMeta; 10] = [
-    KindMeta { key: "video", label: "视频", color: Color32::from_rgb(0xe0, 0x60, 0x54) },
-    KindMeta { key: "image", label: "图片", color: Color32::from_rgb(0xdf, 0xa1, 0x4a) },
-    KindMeta { key: "audio", label: "音频", color: Color32::from_rgb(0xa9, 0x8c, 0xf0) },
-    KindMeta { key: "document", label: "文档", color: Color32::from_rgb(0x4f, 0x9d, 0xf0) },
-    KindMeta { key: "code", label: "代码", color: Color32::from_rgb(0x37, 0xb3, 0xa8) },
-    KindMeta { key: "archive", label: "压缩包", color: Color32::from_rgb(0xc8, 0xac, 0x3a) },
-    KindMeta { key: "executable", label: "程序", color: Color32::from_rgb(0x8a, 0x7c, 0xf2) },
-    KindMeta { key: "system", label: "系统", color: Color32::from_rgb(0x67, 0x78, 0x8e) },
-    KindMeta { key: "font", label: "字体", color: Color32::from_rgb(0x5c, 0xb9, 0x6b) },
-    KindMeta { key: "other", label: "其他", color: Color32::from_rgb(0x78, 0x85, 0x9a) },
+    KindMeta {
+        key: "video",
+        label: "视频",
+        color: Color32::from_rgb(0xe0, 0x60, 0x54),
+    },
+    KindMeta {
+        key: "image",
+        label: "图片",
+        color: Color32::from_rgb(0xdf, 0xa1, 0x4a),
+    },
+    KindMeta {
+        key: "audio",
+        label: "音频",
+        color: Color32::from_rgb(0xa9, 0x8c, 0xf0),
+    },
+    KindMeta {
+        key: "document",
+        label: "文档",
+        color: Color32::from_rgb(0x4f, 0x9d, 0xf0),
+    },
+    KindMeta {
+        key: "code",
+        label: "代码",
+        color: Color32::from_rgb(0x37, 0xb3, 0xa8),
+    },
+    KindMeta {
+        key: "archive",
+        label: "压缩包",
+        color: Color32::from_rgb(0xc8, 0xac, 0x3a),
+    },
+    KindMeta {
+        key: "executable",
+        label: "程序",
+        color: Color32::from_rgb(0x8a, 0x7c, 0xf2),
+    },
+    KindMeta {
+        key: "system",
+        label: "系统",
+        color: Color32::from_rgb(0x67, 0x78, 0x8e),
+    },
+    KindMeta {
+        key: "font",
+        label: "字体",
+        color: Color32::from_rgb(0x5c, 0xb9, 0x6b),
+    },
+    KindMeta {
+        key: "other",
+        label: "其他",
+        color: Color32::from_rgb(0x78, 0x85, 0x9a),
+    },
 ];
 
 pub const BACKGROUND: Color32 = Color32::from_rgb(0x0b, 0x0e, 0x14);

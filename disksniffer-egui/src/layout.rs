@@ -287,7 +287,16 @@ fn place(
                     h: h - caption - 1.0,
                 };
                 if inner.w > 10.0 && inner.h > 10.0 {
-                    place(nested, out, grand, None, inner, depth + 1, &child_path, child_id);
+                    place(
+                        nested,
+                        out,
+                        grand,
+                        None,
+                        inner,
+                        depth + 1,
+                        &child_path,
+                        child_id,
+                    );
                 }
             }
         }
@@ -520,7 +529,10 @@ mod tests {
         let mut clashes = 0;
         let mut missing = 0;
         for rect in rects.iter().filter(|rect| rect.depth > 0) {
-            match rects.iter().find(|candidate| candidate.id == rect.parent_id) {
+            match rects
+                .iter()
+                .find(|candidate| candidate.id == rect.parent_id)
+            {
                 Some(parent) => {
                     if rect.y < parent.y + parent.caption_height - 0.51 {
                         clashes += 1;
@@ -582,7 +594,13 @@ mod tests {
                     let y = top + (parent.y + parent.h - top) * (j as f32) / 12.0;
                     let hit = pick_cell_at(&rects, x, y);
                     assert!(hit.is_some(), "no hit at {},{}", x, y);
-                    assert_ne!(rects[hit.unwrap()].id, parent.id, "parent body leaked at {},{}", x, y);
+                    assert_ne!(
+                        rects[hit.unwrap()].id,
+                        parent.id,
+                        "parent body leaked at {},{}",
+                        x,
+                        y
+                    );
                 }
             }
         }
@@ -629,10 +647,7 @@ mod tests {
     #[test]
     fn squarify_fills_the_box_without_overlap() {
         let (top, _) = fixture();
-        let items: Vec<(i64, u64)> = top
-            .iter()
-            .map(|item| (item.id as i64, item.size))
-            .collect();
+        let items: Vec<(i64, u64)> = top.iter().map(|item| (item.id as i64, item.size)).collect();
         let cells = squarify(
             &items,
             Area {
@@ -684,4 +699,3 @@ mod tests {
         assert!(empty.is_empty());
     }
 }
-

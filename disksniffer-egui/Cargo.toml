@@ -13,6 +13,16 @@ eframe = "0.37"
 rfd = "0.17"
 disksniffer-core = { path = "../shared/disksniffer-core" }
 
+# Shell integration: open / reveal through the registered default file manager.
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = [
+    "Win32_Foundation",
+    "Win32_System_Com",
+    "Win32_UI_Shell",
+    "Win32_UI_Shell_Common",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
 [profile.release]
 codegen-units = 1
 lto = true

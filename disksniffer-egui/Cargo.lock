@@ -755,6 +755,7 @@ dependencies = [
  "disksniffer-core",
  "eframe",
  "rfd",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]

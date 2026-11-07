@@ -2,6 +2,7 @@
 
 mod app;
 mod format;
+mod fsops;
 mod layout;
 mod theme;
 
