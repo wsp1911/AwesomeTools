@@ -1,0 +1,16 @@
+# Node
+node_modules/
+dist/
+
+# Rust / Tauri build output
+target/
+
+# Logs and temp
+*.log
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
